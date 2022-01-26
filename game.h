@@ -1,19 +1,26 @@
-Ôªø
-#ifndef __GAME_H__
-#define __GAME_H__
-#define  _CRT_SECURE_NO_WARNINGS 1
-#define H 9
-#define L 9
-#define N 10
+#define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<Windows.h>
+
+#define ROW 3
+#define COL 3
+
 void menu();
 void game();
-void board(char board[H][L], int x, int y);
-void playboard(char board[H][L], int x, int y);
-void board2(char arr1[H][L], int x, int y, int a, int b);
-void play(char arr[H][L], char arr1[H][L], int x, int y);
-int win(char arr[H][L], int x, int y);
-void clearance(char arr[H][L], char arr1[H][L], int a, int b, int x, int y);
-#endif
+
+//≥ı ºªØ∆Â≈Ã
+void init_board(char board[ROW][COL], int row, int col);
+
+//¥Ú”°∆Â≈Ã
+void display_board(char board[ROW][COL], int row, int col);
+
+//ÕÊº“œ¬∆Â
+void player_move(char board[ROW][COL], int row, int col);
+
+//µÁƒ‘œ¬∆Â
+void computer_move(char board[ROW][COL], int row,int col);
+
+//≈–∂œ ‰”Æ
+char is_win(char board[ROW][COL], int row,int col);
