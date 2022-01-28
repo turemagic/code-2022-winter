@@ -3,59 +3,26 @@
 void menu()
 {
 	printf("**********************************************\n");
-	printf("****************  1.play  ********************\n");
-	printf("****************  0.exit  ********************\n");
+	printf("*****************   1. play   ****************\n");
+	printf("*****************   0. exit   ****************\n");
 	printf("**********************************************\n");
 }
 void game()
 {
-	char ret = 0;
-	//存放下棋的数据
-	char board[ROW][COL] = { 0 };
-	//初始化棋盘为全空格
-	init_board(board, ROW, COL);
+	//实现扫雷游戏
+	char mine[ROWS][COLS] = { 0 };
+	char show[ROWS][COLS] = { 0 };
+	//初始化数组
+	init_board(mine, ROWS, COLS, '0');
+	init_board(show, ROWS, COLS, '*');
 	//打印棋盘
-	display_board(board, ROW, COL);
-	while (1)
-	{
-		//玩家下棋
-		player_move(board, ROW, COL);
-		display_board(board, ROW, COL);
-		//判断输赢
-		ret = is_win(board, ROW, COL);
-		if (ret != 'C')
-		{
-			break;
-		}
-		//电脑下棋
-		computer_move(board, ROW, COL);
-		display_board(board, ROW, COL);
-		//判断输赢
-		ret = is_win(board, ROW, COL);
-		if (ret != 'C')
-		{
-			break;
-		}
-	}
-	if (ret == '*')
-	{
-		printf("玩家赢了\n");
-	}
-	else if (ret == '#')
-	{
-		printf("电脑赢了\n");
-	}
-	else if (ret == 'Q')
-	{
-		printf("平局\n");
-	}
-
-		
+	//print_board(mine, ROW, COL);
+	// 布置雷
+	set_mine(mine, ROW, COL);
+	show_board(show, ROW, COL);
+	//排查雷
+	find_mine(mine, show, ROW, COL);
 }
-//玩家赢--'*'
-//电脑赢--'#'
-//平局--'Q'
-//继续--'C'
 int main()
 {
 	int input = 0;
